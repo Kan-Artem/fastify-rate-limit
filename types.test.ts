@@ -12,5 +12,5 @@ app.register(fastifyRateLimit, {
   redis: new ioredis({ host: '127.0.0.1' }),
   skipOnError: true,
   keyGenerator: (req: fastify.FastifyRequest<any>) => req.raw.ip,
-  errorMessage: (timeWindow: number): string => 'ERROR'
+  errorMessage: (): string => 'ERROR'
 });

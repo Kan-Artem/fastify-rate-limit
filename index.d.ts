@@ -11,7 +11,7 @@ declare namespace fastifyRateLimit {
     redis?: ioredis.Redis;
     skipOnError?: boolean;
     keyGenerator?: (req: fastify.FastifyRequest<any>) => string | number;
-    errorMessage?: string | ((timeWindow: number) => string);
+    errorMessage?: string | (() => string);
   }
 }
 

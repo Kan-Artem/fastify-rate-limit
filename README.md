@@ -53,7 +53,7 @@ fastify.register(require('fastify-rate-limit'), {
   whitelist: ['127.0.0.1'], // default []
   redis: new Redis({ host: '127.0.0.1' }), // default null
   skipOnError: true, // default false
-  keyGenerator: function(req) { /* ... */ }, // default (req) => req.raw.ip,
+  keyGenerator: function(req) { /* ... */ }, // default (req) => req.raw.ip
   errorMessage: 'Rate limit exceeded', // default as above
 })
 ```

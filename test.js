@@ -292,7 +292,7 @@ test('With keyGenerator', t => {
   }
 })
 
-test('With custom error message (string)', t => {
+test('With custom error message', t => {
   t.plan(19)
   const fastify = Fastify()
   fastify.register(rateLimit, {
