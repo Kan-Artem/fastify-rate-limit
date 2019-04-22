@@ -58,7 +58,7 @@ function rateLimitPlugin (fastify, opts, next) {
         if (typeof opts.errorMessage === 'string') {
           message = opts.errorMessage
         } else if (typeof opts.errorMessage === 'function') {
-          message = opts.errorMessage(timeWindow)
+          message = opts.errorMessage()
         }
 
         res.type('application/json').serializer(serializeError)
