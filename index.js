@@ -54,6 +54,13 @@ function rateLimitPlugin (fastify, opts, next) {
         res.header('X-RateLimit-Remaining', max - current)
         next()
       } else {
+        let message = `Rate limit exceeded, retry in ${after}`
+        if (typeof opts.errorMessage === 'string') {
+          message = opts.errorMessage
+        } else if (typeof opts.errorMessage === 'function') {
+          message = opts.errorMessage(timeWindow)
+        }
+
         res.type('application/json').serializer(serializeError)
         res.code(429)
           .header('X-RateLimit-Limit', max)
@@ -62,7 +69,7 @@ function rateLimitPlugin (fastify, opts, next) {
           .send({
             statusCode: 429,
             error: 'Too Many Requests',
-            message: `Rate limit exceeded, retry in ${after}`
+            message
           })
       }
     }

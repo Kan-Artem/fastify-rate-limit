@@ -53,7 +53,8 @@ fastify.register(require('fastify-rate-limit'), {
   whitelist: ['127.0.0.1'], // default []
   redis: new Redis({ host: '127.0.0.1' }), // default null
   skipOnError: true, // default false
-  keyGenerator: function(req) { /* ... */ }, // default (req) => req.raw.ip
+  keyGenerator: function(req) { /* ... */ }, // default (req) => req.raw.ip,
+  errorMessage: 'Rate limit exceeded', // default as above
 })
 ```
 - `max`: is the maximum number of requests a single client can perform inside a timeWindow.
@@ -75,6 +76,7 @@ fastify.register(require('fastify-rate-limit'), {
     || req.raw.ip // fallback to default
 })
 ```
+- `errorMessage`: is a response message string or function that generates this string.
 
 <a name="license"></a>
 ## License
